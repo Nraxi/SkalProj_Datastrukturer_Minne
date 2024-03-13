@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SkalProj_Datastrukturer_Minne
+﻿namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
@@ -78,10 +76,25 @@ namespace SkalProj_Datastrukturer_Minne
             //string value = input.substring(1);
 
             //switch(nav){...}
+
+
         }
 
         /// <summary>
         /// Examines the datastructure Queue
+
+        //2. kapaciteten ökar när värdet överskrider arrays/listans total storlek.
+        //(när den är full ). 
+
+        //3. dubbelt så mycket.
+
+        //4. för att det skall bli mer effektiv och snabbare.
+        //Slippa eittera kopiare delen allt för ofta för det tar engergi / tid.
+
+
+        //5. Nej listan kommer behålla sin kapacitet som den har blivit satt till.
+
+        //6. När det är en fixed mängd.
         /// </summary>
         static void ExamineQueue()
         {
