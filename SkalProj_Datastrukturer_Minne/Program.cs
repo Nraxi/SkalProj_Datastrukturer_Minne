@@ -2,6 +2,7 @@
 {
     class Program
     {
+        static List<string> items = new List<string>();
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -58,8 +59,52 @@
         /// <summary>
         /// Examines the datastructure List
         /// </summary>
+        static void PrintList()
+        {
+
+            Console.WriteLine($"List count: {items.Count}");
+            Console.WriteLine($"List capacity: {items.Capacity}\n");
+
+        }
         static void ExamineList()
         {
+            while (true)
+            {
+                Console.WriteLine("use + or - to add or remove "
+                   + "\nAdd: +"
+                   + "\nRemove: -"
+                   + "\n0. exit");
+                string nav = Console.ReadLine()!;
+
+                switch (nav)
+                {
+                    case "+":
+                        Console.WriteLine("Enter name to add:");
+                        string itemToAdd = Console.ReadLine()!;
+                        items.Add(itemToAdd);
+                        Console.WriteLine($"added {itemToAdd} to the list\n");
+                        PrintList();
+                        break;
+                    case "-":
+                        Console.WriteLine("Enter name to remove:");
+                        string itemToRemove = Console.ReadLine()!;
+                        if (items.Remove(itemToRemove))
+                        {
+                            Console.WriteLine($"{itemToRemove} is now removed from list \n");
+                            PrintList();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{itemToRemove} was not found");
+                        }
+                        break;
+                    case "0":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid input. Please use only '+' or '-'.");
+                        break;
+                }
+            }
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
@@ -94,10 +139,12 @@
 
         //5. Nej listan kommer behålla sin kapacitet som den har blivit satt till.
 
-        //6. När det är en fixed mängd.
+        //6. När det är en fixed mängd. Alternativt att man vill att det skall gå fortare. Då en array tar mindre minne. 
+        // TISDAG EM ska denna in. 
         /// </summary>
         static void ExamineQueue()
         {
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
