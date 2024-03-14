@@ -70,60 +70,78 @@
         {
             while (true)
             {
-                Console.WriteLine("use + or - to add or remove "
-                   + "\nAdd: +"
-                   + "\nRemove: -"
-                   + "\n0. exit");
-                string nav = Console.ReadLine()!;
+                Console.WriteLine("Use + to add, - to remove, or 0 to exit.");
+                string input = Console.ReadLine()!;
 
-                switch (nav)
+                if (!string.IsNullOrEmpty(input))
                 {
-                    case "+":
-                        Console.WriteLine("Enter name to add:");
-                        string itemToAdd = Console.ReadLine()!;
-                        items.Add(itemToAdd);
-                        Console.WriteLine($"added {itemToAdd} to the list\n");
-                        PrintList();
-                        break;
-                    case "-":
-                        Console.WriteLine("Enter name to remove:");
-                        string itemToRemove = Console.ReadLine()!;
-                        if (items.Remove(itemToRemove))
-                        {
-                            Console.WriteLine($"{itemToRemove} is now removed from list \n");
-                            PrintList();
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{itemToRemove} was not found");
-                        }
-                        break;
-                    case "0":
-                        return;
-                    default:
-                        Console.WriteLine("Invalid input. Please use only '+' or '-'.");
-                        break;
+                    char nav = input[0];
+                    string value = input.Substring(1).Trim();
+
+                    switch (nav)
+                    {
+                        case '+':
+                            if (!string.IsNullOrEmpty(value))
+                            {
+                                items.Add(value);
+                                Console.WriteLine($"Added {value} to the list.");
+                                PrintList();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please provide a valid item name.");
+                            }
+                            break;
+                        case '-':
+                            if (!string.IsNullOrEmpty(value))
+                            {
+                                if (items.Remove(value))
+                                {
+                                    Console.WriteLine($"Removed {value} from the list.");
+                                    PrintList();
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"{value} was not found in the list.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please provide a valid item name.");
+                            }
+                            break;
+                        case '0':
+                            return;
+                        default:
+                            Console.WriteLine("Invalid input. Please use only '+' or '-' to add or remove items.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please provide a valid input.");
                 }
             }
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch statement with cases '+' and '-'
-             * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
-             * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
-             * In both cases, look at the count and capacity of the list
-             * As a default case, tell them to use only + or -
-             * Below you can see some inspirational code to begin working.
-            */
+        
+        /*
+         * Loop this method untill the user inputs something to exit to main menue.
+         * Create a switch statement with cases '+' and '-'
+         * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
+         * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
+         * In both cases, look at the count and capacity of the list
+         * As a default case, tell them to use only + or -
+         * Below you can see some inspirational code to begin working.
+        */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+        //List<string> theList = new List<string>();
+        //string input = Console.ReadLine();
+        //char nav = input[0];
+        //string value = input.substring(1);
 
-            //switch(nav){...}
+        //switch(nav){...}
 
 
-        }
+    }
 
         /// <summary>
         /// Examines the datastructure Queue
