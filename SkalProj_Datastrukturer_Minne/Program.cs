@@ -234,6 +234,7 @@
                         Console.WriteLine(person);
                     }
                 }
+               
             }
         }
 
@@ -242,12 +243,81 @@
         /// </summary>
         static void ExamineStack()
         {
+            const int maxStackSize = 5;
+            Stack<string> stack = new Stack<string>();
+
+            while (true)
+            {
+                Console.WriteLine("Current Stack:");
+                PrintStack(stack);
+
+                Console.WriteLine("\nOptions:");
+                Console.WriteLine("1. Add a person to the stack");
+                Console.WriteLine("2. Process the last person in the stack");
+
+                Console.WriteLine("3. Exit");
+
+                Console.Write("\nEnter your choice: ");
+                string input = Console.ReadLine()!;
+                int choice;
+                if (int.TryParse(input, out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            if (stack.Count >= maxStackSize)
+                            {
+                                Console.WriteLine("Stack is full. The last person will be removed.");
+                                stack.Pop();
+                            }
+                            Console.Write("Enter person's name to add to the stack: ");
+                            string person = Console.ReadLine()!;
+                            stack.Push(person);
+                            break;
+                        case 2:
+                            if (stack.Count > 0)
+                            {
+                                string removedPerson = stack.Pop();
+                                Console.WriteLine($"Processed: {removedPerson}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Stack is empty.");
+                            }
+                            break;
+
+                        case 3:
+                            return;
+                        default:
+                            Console.WriteLine("Invalid choice. Please try again.");
+                            break;
+                    }
+
+                    Console.Clear();
+                }
+            }
+        }
+
+            static void PrintStack(Stack<string> stack)
+            {
+                if (stack.Count == 0)
+                {
+                    Console.WriteLine("Stack is empty.");
+                }
+                else
+                {
+                    foreach (var person in stack)
+                    {
+                        Console.WriteLine(person);
+                    }
+                }
+            }
             /*
              * Loop this method until the user inputs something to exit to main menue.
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
-        }
+           
 
         static void CheckParanthesis()
         {
