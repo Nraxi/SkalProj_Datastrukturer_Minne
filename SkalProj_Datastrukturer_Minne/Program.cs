@@ -60,6 +60,11 @@
 
         /// <summary>
         /// Examines the datastructure List
+        /// 1. Stacken är som att du lägger tallrickar på varandra, det e alltid enkelt att nå den översta men aldrig den understa. 
+        // 1. Medans Heapen är som en sopptunna där du slänger ner allt i, men den har bra med utrymmer men de e svårt o hitta saker. 
+        // 2. Referenstyper är som att du har en lapp som perkar på vart saken är, medans en Value typ, är en egen bit med sitt eget värde. 
+        // 2 det som skiljer dem åt är hur de används och vart de lagras i minnet. 
+        // 3. Iomed att i det första så retunerar man värdet av en variabel och i den andra så retuneras ett värde av ett object. och man referear på ett object och inte på en variabel. samt att ordningen är annorlunda. 
         /// </summary>
         static void PrintList()
         {
@@ -216,6 +221,8 @@
                     Console.Clear();
                 }
             }
+
+           
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
@@ -323,13 +330,7 @@
                 }
             }
         }
-        /*
-         * Loop this method until the user inputs something to exit to main menue.
-         * Create a switch with cases to push or pop items
-         * Make sure to look at the stack after pushing and and poping to see how it behaves
-        */
-
-
+    
         static string ReverseText(string input)
         {
             string[] words = input.Split();
@@ -351,6 +352,17 @@
             string reversedString = string.Join(" ", reversedWords);
             return reversedString;
         }
+
+        /// <summary>
+        /// 1. För att du hela tiden tar bort den sista användaren, med andra ord varför ha ett sånt kö system, då skulle alltid den sista få betala medans den som kom först alltid får vänta till sist om man inte aktivt säger nu ska vi ta bort den personen. 
+        /// Så med andra ord tids effiktivetet. och minnes kapacitet. 
+        /// 2.Detta är min tolkning på den. 
+        /// </summary>
+     /*
+     * Loop this method until the user inputs something to exit to main menue.
+     * Create a switch with cases to push or pop items
+     * Make sure to look at the stack after pushing and and poping to see how it behaves
+    */
         static void CheckParanthesis()
         {
             /*
