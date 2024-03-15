@@ -47,6 +47,8 @@
                      * and iterative exercises.
                      */
                     case '0':
+                        Console.WriteLine("Exiting program...");
+
                         Environment.Exit(0);
                         break;
                     default:
@@ -122,26 +124,26 @@
                     Console.WriteLine("Invalid input. Please provide a valid input.");
                 }
             }
-        
-        /*
-         * Loop this method untill the user inputs something to exit to main menue.
-         * Create a switch statement with cases '+' and '-'
-         * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
-         * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
-         * In both cases, look at the count and capacity of the list
-         * As a default case, tell them to use only + or -
-         * Below you can see some inspirational code to begin working.
-        */
 
-        //List<string> theList = new List<string>();
-        //string input = Console.ReadLine();
-        //char nav = input[0];
-        //string value = input.substring(1);
+            /*
+             * Loop this method untill the user inputs something to exit to main menue.
+             * Create a switch statement with cases '+' and '-'
+             * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
+             * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
+             * In both cases, look at the count and capacity of the list
+             * As a default case, tell them to use only + or -
+             * Below you can see some inspirational code to begin working.
+            */
 
-        //switch(nav){...}
+            //List<string> theList = new List<string>();
+            //string input = Console.ReadLine();
+            //char nav = input[0];
+            //string value = input.substring(1);
+
+            //switch(nav){...}
 
 
-    }
+        }
 
         /// <summary>
         /// Examines the datastructure Queue
@@ -162,12 +164,77 @@
         /// </summary>
         static void ExamineQueue()
         {
+            const int maxQueueSize = 5;
+            Queue<string> queue = new Queue<string>();
 
+            while (true)
+            {
+                Console.WriteLine("Current Queue:");
+                PrintQueue(queue);
+
+                Console.WriteLine("\nOptions:");
+                Console.WriteLine("1. Add a person to the queue");
+                Console.WriteLine("2. Process the first person in the queue");
+                Console.WriteLine("3. Exit");
+
+                Console.Write("\nEnter your choice: ");
+                string input = Console.ReadLine()!;
+                int choice;
+                if (int.TryParse(input, out choice))
+                {
+                    switch (choice)
+                    {
+                        case 1:
+                            if (queue.Count >= maxQueueSize)
+                            {
+                                Console.WriteLine("Queue is full. The first person will be removed.");
+                                queue.Dequeue();
+                            }
+                            Console.Write("Enter person's name to add to the queue: ");
+                            string person = Console.ReadLine()!;
+                            queue.Enqueue(person);
+                            break;
+                        case 2:
+                            if (queue.Count > 0)
+                            {
+                                string removedPerson = queue.Dequeue();
+                                Console.WriteLine($"Processed: {removedPerson}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Queue is empty.");
+                            }
+                            break;
+                        case 3:
+                            return;
+                            
+                        default:
+                            Console.WriteLine("Invalid choice. Please try again.");
+                            break;
+                    }
+                   
+                    Console.Clear();
+                }
+            }
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            static void PrintQueue(Queue<string> queue)
+            {
+                if (queue.Count == 0)
+                {
+                    Console.WriteLine("Queue is empty.");
+                }
+                else
+                {
+                    foreach (var person in queue)
+                    {
+                        Console.WriteLine(person);
+                    }
+                }
+            }
         }
 
         /// <summary>
