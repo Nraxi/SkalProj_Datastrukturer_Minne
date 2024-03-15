@@ -243,7 +243,7 @@
         /// </summary>
         static void ExamineStack()
         {
-            const int maxStackSize = 5;
+            const int maxStackSize = 4;
             Stack<string> stack = new Stack<string>();
 
             while (true)
@@ -274,11 +274,11 @@
                             string person = Console.ReadLine()!;
                             stack.Push(person);
                             break;
+                            
                         case 2:
                             if (stack.Count > 0)
                             {
-                                string removedPerson = stack.Pop();
-                                Console.WriteLine($"Processed: {removedPerson}");
+                                stack.Pop();
                             }
                             else
                             {
