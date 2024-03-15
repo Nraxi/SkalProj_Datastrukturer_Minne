@@ -372,6 +372,8 @@
              */
 
         }
+        // 1. Jag skulle använda mig utav en stack. Då den kan hantera paranteserna bättre. 
+        
 
     }
 }
