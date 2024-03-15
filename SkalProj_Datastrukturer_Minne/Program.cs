@@ -207,12 +207,12 @@
                             break;
                         case 3:
                             return;
-                            
+
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
                             break;
                     }
-                   
+
                     Console.Clear();
                 }
             }
@@ -234,7 +234,7 @@
                         Console.WriteLine(person);
                     }
                 }
-               
+
             }
         }
 
@@ -245,19 +245,23 @@
         {
             const int maxStackSize = 4;
             Stack<string> stack = new Stack<string>();
-
+            string reversedString = "";
             while (true)
             {
                 Console.WriteLine("Current Stack:");
                 PrintStack(stack);
+               
 
                 Console.WriteLine("\nOptions:");
                 Console.WriteLine("1. Add a person to the stack");
                 Console.WriteLine("2. Process the last person in the stack");
+                Console.WriteLine("3. Rev strings");
+                Console.WriteLine("4. Exit");
 
-                Console.WriteLine("3. Exit");
+
 
                 Console.Write("\nEnter your choice: ");
+
                 string input = Console.ReadLine()!;
                 int choice;
                 if (int.TryParse(input, out choice))
@@ -274,7 +278,7 @@
                             string person = Console.ReadLine()!;
                             stack.Push(person);
                             break;
-                            
+
                         case 2:
                             if (stack.Count > 0)
                             {
@@ -285,40 +289,68 @@
                                 Console.WriteLine("Stack is empty.");
                             }
                             break;
-
                         case 3:
+                            Console.WriteLine("Enter a string to reverse, then press enter:");
+                            string inputString = Console.ReadLine()!;
+                            reversedString = ReverseText(inputString);
+
+
+                            break;
+                            
+                        case 4:
                             return;
                         default:
                             Console.WriteLine("Invalid choice. Please try again.");
                             break;
                     }
-
                     Console.Clear();
+                    Console.WriteLine("Result of Reversed string: " + reversedString);
                 }
             }
         }
 
-            static void PrintStack(Stack<string> stack)
+        static void PrintStack(Stack<string> stack)
+        {
+            if (stack.Count == 0)
             {
-                if (stack.Count == 0)
+                Console.WriteLine("Stack is empty.");
+            }
+            else
+            {
+                foreach (var person in stack)
                 {
-                    Console.WriteLine("Stack is empty.");
-                }
-                else
-                {
-                    foreach (var person in stack)
-                    {
-                        Console.WriteLine(person);
-                    }
+                    Console.WriteLine(person);
                 }
             }
-            /*
-             * Loop this method until the user inputs something to exit to main menue.
-             * Create a switch with cases to push or pop items
-             * Make sure to look at the stack after pushing and and poping to see how it behaves
-            */
-           
+        }
+        /*
+         * Loop this method until the user inputs something to exit to main menue.
+         * Create a switch with cases to push or pop items
+         * Make sure to look at the stack after pushing and and poping to see how it behaves
+        */
 
+
+        static string ReverseText(string input)
+        {
+            string[] words = input.Split();
+            List<string> reversedWords = new List<string>();
+
+            foreach (string word in words)
+            {
+                Stack<char> stack = new Stack<char>(word.ToCharArray());
+                string reversedWord = "";
+
+                while (stack.Count > 0)
+                {
+                    reversedWord += stack.Pop();
+                }
+
+                reversedWords.Add(reversedWord);
+            }
+
+            string reversedString = string.Join(" ", reversedWords);
+            return reversedString;
+        }
         static void CheckParanthesis()
         {
             /*
