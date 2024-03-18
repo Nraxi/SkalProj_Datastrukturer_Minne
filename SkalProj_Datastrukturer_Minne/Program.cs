@@ -365,13 +365,53 @@
     */
         static void CheckParanthesis()
         {
-            /*
-             * Use this method to check if the paranthesis in a string is Correct or incorrect.
-             * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
-             * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
-             */
+            Console.WriteLine("skriv in den strängen du vill kolla:");
+            string input = Console.ReadLine()!;
+            if (Check(input))
+            {
+                Console.WriteLine("Korrekt sträng \n");
+            }
+            else
+            {
+                Console.WriteLine("Inte en korrekt sträng \n");
+            }
 
-        }
+
+             static bool Check(string input)
+            {
+                Stack<char> stack = new Stack<char>();
+
+                foreach (char c in input)
+                {
+                    if (c == '(' || c == '{' || c == '[')
+                    {
+                        stack.Push(c);
+                    }
+                    else if (c == ')' || c == '}' || c == ']')
+                    {
+                        if (stack.Count == 0)
+                            return false;
+
+                        char begining = stack.Pop();
+
+                        if ((c == ')' && begining != '(') ||
+                            (c == '}' && begining != '{') ||
+                            (c == ']' && begining != '['))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return stack.Count == 0;
+            }
+                /*
+                 * Use this method to check if the paranthesis in a string is Correct or incorrect.
+                 * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
+                 * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
+                 */
+
+            }
         // 1. Jag skulle använda mig utav en stack. Då den kan hantera paranteserna bättre. 
         
 
